@@ -2,19 +2,67 @@
 <html>
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DJANGO EVALUACIO FINAL</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .list-group-item {
+            background-color: #868686;
+            color: #e6e5e5;
+            border: 3px solid #8d1515;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .list-group-item:hover {
+            transform: scale(1.05);
+        }
+
+        .list-group-item span {
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+    <title>Bienvenido al Seminario</title>
 </head>
 
-<body>
-    <h1>Bienvenido a la Plataforma del Seminario</h1>
+<body class="container">
+    <div class="alert alert-success display-1 text-center">Bienvenido a la Plataforma del Seminario</div>
 
-    <ul>
+    <div class="list-group">
         {% for inscrito in inscritos %}
-        <li>{{ inscrito.nombre }} - {{ inscrito.institucion }}</li>
+        <div class="list-group-item">
+            <strong>{{ inscrito.nombre }}</strong>
+            <span>Teléfono: {{ inscrito.telefono }}</span>
+            <span>Fecha de Inscripción: {{ inscrito.fecha_inscripcion }}</span>
+            <span>Institución: {{ inscrito.institucion.nombre }}</span>
+            <span>Hora de Inscripción: {{ inscrito.hora_inscripcion }}</span>
+            <span>Estado: {{ inscrito.estado }}</span>
+            <span>Observación: {{ inscrito.observacion }}</span>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
+
+    <div class="mt-4">
+        <a href="{% url 'inscrito-list-create' %}" class="btn btn-primary">Ver Lista de Inscritos- Class-Based Views</a>
+        <a href="{% url 'inscrito-detail' id=1 %}" class="btn btn-secondary">Ver Detalles del Inscrito- (CBV)
+            Views</a>
+        <a href="{% url 'inscrito-list-fbv' %}" class="btn btn-success">Ver Lista de Inscritos -Function-Based Views</a>
+        <a href="{% url 'inscrito-detail-fbv' id=1 %}" class="btn btn-info">Ver Detalles del Inscrito (FBV)
+        </a>
+        <a href="{% url 'get-autor-info' %}" class="btn btn-warning">Ver Información del Autor</a>
+    </div>
 </body>
 
 </html>
