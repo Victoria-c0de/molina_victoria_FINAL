@@ -23,7 +23,7 @@ def get_autor_info(request):
         'Profesor': 'Pedro Gaete',
         'secciones': '(TI2041/AP-171-N4/D Temuco B5 )',
         'github': 'https://github.com/Victoria-c0de',
-        # Agrega cualquier otra información del autor que desees mostrar
+    
     }
     return JsonResponse(autor_info)
 
